@@ -255,3 +255,71 @@ Node *CircularLinkedList::getTail()
 {
     return Tail;
 }
+
+void CircularLinkedList::shift_form(char F)
+{
+    int size_of_form = SizeForm[mapForm[F]];
+    if (size_of_form == 0)
+        return;
+    char temp_C = lstForm[mapForm[F]]->getMyColor();
+    Node *temp = lstForm[mapForm[F]];
+    for (int i = 1; i < size_of_form; i++)
+    {
+        temp->setMyColor(temp->getNextSameForm()->getMyColor());
+        temp = temp->getNextSameForm();
+    }
+    temp->setMyColor(temp_C);
+    Node *temp_Tail = Tail;
+    Tail = nullptr;
+    int temp_Size = Size;
+    Size = 0;
+    for (int i = 0; i < 4; ++i)
+    {
+        lstCoul[i] = nullptr;
+        lstForm[i] = nullptr;
+        SizeCoul[i] = 0;
+        SizeForm[i] = 0;
+    }
+    Node *temp_to_start = temp_Tail->getNext();
+    for (int i = 0; i < temp_Size; i++)
+    {
+        insertAtEnd(temp_to_start->getMyColor(), temp_to_start->getMyForm());
+        Node *temp_to_delete = temp_to_start;
+        temp_to_start = temp_to_start->getNext();
+        delete temp_to_delete;
+    }
+};
+
+void CircularLinkedList::shift_color(char C)
+{
+    int size_of_color = SizeCoul[mapCoul[C]];
+    if (size_of_color == 0)
+        return;
+    char temp_F = lstCoul[mapCoul[C]]->getMyForm();
+    Node *temp = lstCoul[mapCoul[C]];
+    for (int i = 1; i < size_of_color; i++)
+    {
+        temp->setMyForm(temp->getNextSameColor()->getMyForm());
+        temp = temp->getNextSameColor();
+    }
+    temp->setMyForm(temp_F);
+    Node *temp_Tail = Tail;
+    Tail = nullptr;
+    int temp_Size = Size;
+    Size = 0;
+    for (int i = 0; i < 4; ++i)
+    {
+        lstCoul[i] = nullptr;
+        lstForm[i] = nullptr;
+        SizeCoul[i] = 0;
+        SizeForm[i] = 0;
+    }
+    Node *temp_to_start = temp_Tail->getNext();
+    for (int i = 0; i < temp_Size; i++)
+    {
+        insertAtEnd(temp_to_start->getMyColor(), temp_to_start->getMyForm());
+        Node *temp_to_delete = temp_to_start;
+        temp_to_start = temp_to_start->getNext();
+        delete temp_to_delete;
+    }
+};

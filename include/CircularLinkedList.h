@@ -35,4 +35,6 @@ public:
     void insertAtEnd(char C, char F);
     void insertAtStart(char C, char F);
     void display();
+    void shift_color(char C);
+    void shift_form(char F);
 };

@@ -9,4 +9,6 @@ public:
     shape(char C, char F);
     char getMyColor();
     char getMyForm();
+    void setMyColor(char C);
+    void setMyForm(char F);
 };

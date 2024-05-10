@@ -61,13 +61,17 @@ int main()
         char RndClr = randomColor();
         char RndForm = randomForm();
         cout << mapColorStart[RndClr] << RndForm << ANSI_COLOR_RESET << endl;
-        window.DisplayTheNextElement(RndClr, RndForm);
         cout << "Q. Insert at the Start" << endl;
         cout << "D. Insert at the End" << endl;
 
+    weShift:
+        window.clear();
+        window.renderBG(background);
+        window.display();
+        window.displayLst(&lst);
+        window.DisplayTheNextElement(RndClr, RndForm);
     // Handle SDL events for keyboard input
     isJustMouse:
-
         SDL_WaitEvent(&event);
 
         if (event.type == SDL_QUIT)
@@ -78,11 +82,49 @@ int main()
         {
             switch (event.key.keysym.sym)
             {
-            case SDLK_q:
+            case SDLK_LEFT:
                 lst.insertAtStart(RndClr, RndForm);
                 break;
-            case SDLK_d:
+            case SDLK_RIGHT:
                 lst.insertAtEnd(RndClr, RndForm);
+                break;
+            case SDLK_r:
+                lst.shift_color('R');
+                goto weShift;
+                break;
+            case SDLK_b:
+                lst.shift_color('B');
+                goto weShift;
+
+                break;
+            case SDLK_g:
+                lst.shift_color('G');
+                goto weShift;
+
+                break;
+            case SDLK_y:
+                lst.shift_color('Y');
+                goto weShift;
+
+                break;
+            // for Form
+            case SDLK_c:
+                lst.shift_form('C');
+                goto weShift;
+
+                break;
+            case SDLK_s:
+                lst.shift_form('S');
+                goto weShift;
+
+                break;
+            case SDLK_t:
+                lst.shift_form('T');
+                goto weShift;
+                break;
+            case SDLK_d:
+                lst.shift_form('D');
+                goto weShift;
                 break;
             default:
                 goto isJustMouse;

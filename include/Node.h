@@ -16,6 +16,8 @@ public:
     void Display();
     char getMyColor();
     char getMyForm();
+    void setMyColor(char C);
+    void setMyForm(char F);
     // Node_Double<Node> getColor();
     // Node_Double<Node> getForm();
     //  Getters

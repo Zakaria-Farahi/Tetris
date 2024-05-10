@@ -89,3 +89,10 @@ char Node::getMyForm()
 {
     return _shape.getMyForm();
 }
+
+void Node::setMyColor(char C){
+    _shape.setMyColor(C);
+}
+void Node::setMyForm(char F){
+    _shape.setMyForm(F);
+}

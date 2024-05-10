@@ -17,3 +17,12 @@ char shape::getMyForm()
 {
     return form;
 }
+
+void shape::setMyColor(char C)
+{
+    color = C;
+}
+void shape::setMyForm(char F)
+{
+    form = F;
+}
